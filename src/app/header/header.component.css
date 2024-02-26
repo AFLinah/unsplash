@@ -1,0 +1,130 @@
+
+form {
+    color: #555;
+    display: flex;
+    border: 1px solid #EEEEEE;
+    background: #EEEEEE;
+}
+
+input[type="search"] {
+    border: none;
+    background: #EEEEEE;
+    margin: 0;
+    padding: 7px 8px;
+    font-size: 14px;
+    color: inherit;
+    border: 1px solid transparent;
+  }
+
+  input[type="search"]::placeholder {
+    color: #757575;
+    font-size: 16px;
+  }
+
+  button[type="submit"] {
+    text-indent: -999px;
+    overflow: hidden;
+    width: 40px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid transparent;
+    background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat center;
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+
+input[type="search"]:focus {
+    box-shadow: 0 0 3px 0 #757575;
+    border-color: #757575;
+    outline: none;
+}
+
+.right-icon {
+    width: 560px;
+}
+
+.text-grey {
+    color: #757575;
+}
+
+.bg-grey {
+    background-color: #EEEEEE;
+}
+
+.gradient-pink-blue {
+    background: linear-gradient(to right, #FF709A, #74BBFB);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.gradient-pink-blue:hover {
+    background: linear-gradient(to left, #FF709A, #74BBFB);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.text-hover:hover {
+    color: #000;
+}
+
+.desktop-menu {
+    margin-top: 12px;
+}
+
+.desktop-menu ul li {
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 26px;
+    margin-top: 0;
+}
+
+.desktop-menu button {
+    margin-left: 26px;
+}
+
+.desktop-menu ul li a{
+    text-decoration: none;
+}
+
+.menu-icon {
+    display: none;
+}
+
+@media screen and (min-width:128px) and (max-width:900px){
+    .desktop-menu {
+        position: fixed;
+        transition: 0.4s ease-in-out;
+        right: -280px;
+        top: 64px;
+        background: #EEEEEE;
+        width: 280px;
+        height: 100%;
+    }
+
+    .desktop-menu ul li {
+        display: block;
+        text-align: left;
+        margin: 0;
+        padding: 10px 0 10px 26px;
+        border-bottom: 1px solid grey;
+    }
+
+    .desktop-menu button {
+        margin-top: 26px;
+    }
+
+    .menu-icon {
+        display: block;
+        color: #000;
+        font-size: 40px;
+    }
+
+    .mobile-menu {
+        right: 0;
+        transition: 0.4s ease-in-out;
+        z-index: 9999;
+    }
+}
