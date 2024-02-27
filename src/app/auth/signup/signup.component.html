@@ -104,3 +104,24 @@
         </div>
     </div>
 </section>
+
+
+<div class="d-flex flex-column align-items-center mb-5">
+    <div *ngIf="error">
+        <p>Erreur: {{ error }}</p>
+    </div>
+
+    <div class="users-container" *ngIf="users">
+        <ul>
+            <li *ngFor="let user of users" class="card p-3 mb-3 bg-light">
+                <div class="user">
+                    <span class="user-email">Email: {{ user.email }}</span><br>
+                    <span class="user-firstname">Firstname: {{ user.firstName }}</span><br>
+                    <span class="user-gender">Gender: {{ user.gender }}</span><br>
+                    <span class="user-id">Id: {{ user.id }}</span><br>
+                    <span class="user-isActive">IsActive: {{ user.isActive }}</span><br>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
