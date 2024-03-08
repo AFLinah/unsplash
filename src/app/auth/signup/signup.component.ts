@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { GET_USERS , CREATE_USER } from '../../graphql.operations';
-import { ExecutionResult } from 'graphql';
-import { ApolloError } from '@apollo/client';
+// import { ExecutionResult } from 'graphql';
+// import { ApolloError } from '@apollo/client';
 
 @Component({
   selector: 'app-signup',
@@ -13,41 +13,62 @@ export class SignupComponent implements OnInit {
   users: any[] = [];
   error: any;
 
+  username: string = '';
+  email: string = '';
+  location: string = '';
+  phoneNumber: string = '';
+  website: string = '';
+  gender: string = '';
+  interest: string = '';
+  bio: string = '';
+  password: string = '';
+
+  // Variables pour stocker les erreurs associées à chaque champ
+  usernameError: string | null = null;
+  emailError: string | null = null;
+  locationError: string | null = null;
+  phoneNumberError: string | null = null;
+  websiteError: string | null = null;
+  genderError: string | null = null;
+  interestError: string | null = null;
+  bioError: string | null = null;
+  passwordError: string | null = null;
+
   constructor(private apollo: Apollo) { }
 
-  ngOnInit(): void {
-  this.apollo.watchQuery({
-    query: GET_USERS
-  }).valueChanges.subscribe(({ data, error }: any) => {
-    if (data && data.users && data.users.edges) {
-      this.users = data.users.edges.map((edge: any) => edge.node);
+    onSubmit() {
+      this.apollo.mutate({
+        mutation: CREATE_USER,
+        variables: {
+          username: this.username,
+          email: this.email,
+          gender: this.gender,
+          location: this.location,
+          website: this.website,
+          bio: this.bio,
+          interests: this.interest,
+          phoneNumber: this.phoneNumber,
+          password: this.password
+        }
+      }).subscribe(
+        ({ data }) => {
+          console.log('User created:', data);
+          // Traiter la réponse la mutation ici
+        },
+        error => {
+          console.log('Error creating user:', error);
+        }
+      );
     }
-    this.error = error;
-  });
 
-  this.apollo.mutate({
-    mutation: CREATE_USER,
-    variables: {
-      input: {
-        // Remplacez ces valeurs par celles que vous souhaitez créer
-        email: '',
-        firstName: '',
-        gender: '',
-        id: '',
-        isActive: false,
+    ngOnInit(): void {
+    this.apollo.watchQuery({
+      query: GET_USERS
+    }).valueChanges.subscribe(({ data, error }: any) => {
+      if (data && data.users && data.users.edges) {
+        this.users = data.users.edges.map((edge: any) => edge.node);
       }
-    }
-  }).subscribe((result: ExecutionResult<any>) => {
-    // Vérifier si 'data' est défini et a le bon format
-    if (result.data && result.data.createUser) {
-      // Gérer la réponse de la mutation ici
-      console.log('Utilisateur créé : ', result.data.createUser);
-    }
-  }, (error: ApolloError) => {
-    // Gérer les erreurs éventuelles ici
-    console.error('Erreur lors de la création de l\'utilisateur : ', error);
-  });
-}
-
-
+      this.error = error;
+    });
+  }
 }

@@ -2,7 +2,7 @@ import { gql } from "apollo-angular";
 
 const GET_USERS = gql `
     query Users {
-        users(first: 10) {
+        users(last: 10) {
             edges {
                 node {
                     username
@@ -28,28 +28,40 @@ const GET_USERS = gql `
 export { GET_USERS };
 
 export const CREATE_USER = gql`
-mutation CreateUser {
-    createUser(
-      input: {
-        username: "Ariel", 
-        email: "ariel@gmail.com", 
-        gender: "Female", 
-        location: "Antananarivo", 
-        bio: "Lorem ipsum dolor sit amet", 
-        interests: "Dance", 
-        phoneNumber: "347716184", 
-        password: "ariel@1234"}
-    ) {
-      user {
-        username
-        email
-        gender
-        location
-        website
-        bio
-        interests
-        phoneNumber
+  mutation CreateUser (
+    $username: String!,
+    $email: String!,
+    $gender: String!,
+    $location: String!,
+    $website: String!,
+    $bio: String!,
+    $interests: String!,
+    $phoneNumber: String!,
+    $password: String!
+  ) {
+      createUser(
+        input: {
+          username: $username, 
+          email: $email, 
+          gender: $gender, 
+          location: $location, 
+          website: $website,
+          bio: $bio, 
+          interests: $interests, 
+          phoneNumber: $phoneNumber, 
+          password: $password
+        }
+      ) {
+        user {
+          username
+          email
+          gender
+          location
+          website
+          bio
+          interests
+          phoneNumber
+        }
       }
     }
-  }
-`;
+  `;
