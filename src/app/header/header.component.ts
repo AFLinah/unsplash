@@ -23,7 +23,7 @@ export class HeaderComponent {
   constructor(private router: Router){ }
 
   onSignUp(){
-    console.log('Redirection vers la page de création de compte');
+    // console.log('Redirection vers la page de création de compte');
     this.router.navigate(['/signup']); 
   }
 }

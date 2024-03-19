@@ -19,19 +19,19 @@
             <i class="{{menu_icon}}"></i>
         </div>
         <div class="desktop-menu" [class.mobile-menu]="menuValue">
-            <ul class="right-icon  justify-content-between  me-3 align-items-center list-unstyled">
+            <ul class="right-icon justify-content-between  me-3 align-items-center list-unstyled">
                 <li (click)="closeMenu()">
                     <a class="text-grey text-hover" href="#">Explore</a>
                 </li>
                 <li (click)="closeMenu()">
                     <a class="text-grey text-hover" href="#">Advertise</a>
                 </li>
-                <li (click)="closeMenu()">
+                <!-- <li (click)="closeMenu()">
                     <a class="gradient-pink-blue" href="#">Unsplash+</a>
-                </li>
+                </li> -->
                 <!-- <li class="vertical"></li> -->
-                <button class="btn  border-0 text-grey text-hover" (click)="onSignUp()">Log in</button>
-                <button class="btn  border text-grey text-hover">Submit a photo</button>
+                <a routerLink="login" class="btn  border-0 text-grey text-hover" >Log in</a>
+                <a routerLink="uploadFile" class="btn  border text-grey text-hover">Submit a photo</a>
             </ul>
         </div>
     </div>
