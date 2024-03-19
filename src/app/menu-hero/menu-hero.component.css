@@ -92,10 +92,11 @@
   .image img {
     width: 100%;
     height: auto;
+    filter: brightness(0.5);
   }
-  .image p {
+  .image ul {
     position: absolute;
-    bottom: 10px;
+    bottom: 3px;
     left: 0;
     right: 0;
     color: white;
