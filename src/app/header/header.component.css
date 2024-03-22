@@ -1,3 +1,6 @@
+.home-icon:hover {
+    cursor: pointer;
+}
 
 form {
     color: #555;
@@ -105,16 +108,23 @@ input[type="search"]:focus {
         height: 100%;
     }
 
+    .right-icon {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
     .desktop-menu ul li {
         display: block;
+        width: 100%;
         text-align: left;
         margin: 0;
         padding: 10px 0 10px 26px;
         border-bottom: 1px solid grey;
     }
 
-    .desktop-menu button {
-        margin-top: 26px;
+    .desktop-menu a {
+        margin-top: 20px;
     }
 
     .menu-icon {

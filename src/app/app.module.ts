@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { LoginComponent } from './auth/login/login.component';
+import { HomeComponent } from './home/home.component';
 
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -23,7 +24,8 @@ import { LoginComponent } from './auth/login/login.component';
     MenuHeroComponent,
     SignupComponent,
     UploadFileComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

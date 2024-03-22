@@ -1,6 +1,6 @@
 <section class="vh-100 gradient-custom">
     <div class="container py-5 h-100">
-        <div class="row justify-content-center align-items-center h-100">
+        <div class="row justify-content-center align-items-center">
             <div class="col-12 col-lg-9 col-xl-7">
                 <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                     <div class="card-body p-4 p-md-5">
@@ -10,15 +10,15 @@
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
-                                        <input type="text" class="form-control form-control-lg" name="username" [(ngModel)]="username"/>
                                         <label class="form-label" for="username">Username</label>
+                                        <input type="text" class="form-control form-control-lg" name="username" [(ngModel)]="username"/>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
-                                        <input type="email" class="form-control form-control-lg" name="email" [(ngModel)]="email"/>
                                         <label class="form-label" for="emailAddress">Email</label>
+                                        <input type="email" class="form-control form-control-lg" name="email" [(ngModel)]="email"/>
                                     </div>
                                 </div>
                             </div>
@@ -26,15 +26,15 @@
                             <div class="row">
                                 <div class="col-md-6 mb-4 pb-2">
                                     <div class="form-outline">
-                                        <input type="text" class="form-control form-control-lg" name="location" [(ngModel)]="location"/>
                                         <label class="form-label" for="location">Location</label>
+                                        <input type="text" class="form-control form-control-lg" name="location" [(ngModel)]="location"/>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6 mb-4 pb-2">
                                     <div class="form-outline">
+                                        <label class="form-label" for="phoneNumber">Phone Number</label>
                                     <input type="tel" class="form-control form-control-lg" name="phoneNumber" [(ngModel)]="phoneNumber"/>
-                                    <label class="form-label" for="phoneNumber">Phone Number</label>
                                     </div>
                                 </div>
                             </div>
@@ -42,36 +42,36 @@
                             <div class="row">
                                 <div class="col-md-6 mb-4 d-flex align-items-center">
                                     <div class="form-outline">
-                                        <input type="text" class="form-control form-control-lg" name="website" [(ngModel)]="website"/>
                                         <label class="form-label" for="website">Website</label>
+                                        <input type="text" class="form-control form-control-lg" name="website" [(ngModel)]="website"/>
                                     </div>
                                 </div>
                                 
                                 <div class="col-md-6 ">
-                                    <select id="genderDropdown" class="form-select" name="gender" [(ngModel)]="gender">
-                                        <option value="Female">Female</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Other">Other</option>
-                                    </select>
                                     <label for="genderDropdown" class="form-label">Gender</label>
+                                    <select id="genderDropdown" class="form-select" name="gender" [(ngModel)]="gender">
+                                        <option value="FEMALE">Female</option>
+                                        <option value="MALE">Male</option>
+                                        <!-- <option value="Other">Other</option> -->
+                                    </select>
                                 </div>
                                 
                             </div>
 
                             <div class="row">
-                                <div class="col-12">
+                                <div class="col-12 mb-4">
                                     <div class="form-outline">
-                                        <input type="text" class="form-control form-control-lg" name="interest" [(ngModel)]="interest"/>
                                         <label class="form-label" for="interest">Interest</label>
+                                        <input type="text" class="form-control form-control-lg" name="interest" [(ngModel)]="interest"/>
                                     </div>
                                 </div>
                             </div>
             
                             <div class="row">
-                                <div class="col-12">
+                                <div class="col-12 mb-4">
                                     <div class="form-outline">
-                                        <textarea type="text" class="form-control form-control-lg" name="bio" [(ngModel)]="bio"></textarea>
                                         <label class="form-label" for="bio">Bio</label>
+                                        <textarea type="text" class="form-control form-control-lg" name="bio" [(ngModel)]="bio"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -79,8 +79,8 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-outline">
-                                        <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" name="password" [(ngModel)]="password">
                                         <label for="inputPassword5" class="form-label">Password</label>
+                                        <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" name="password" [(ngModel)]="password">
                                         <!-- <div class="form-text text-danger">
                                         Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
                                         </div> -->
@@ -89,7 +89,7 @@
                             </div>
             
                             <div class="mt-4 pt-2">
-                                <input class="btn btn-dark w-100" type="submit" value="Submit" />
+                                <input class="btn btn-dark w-100" type="submit" value="Submit"/>
                             </div>
             
                         </form>
