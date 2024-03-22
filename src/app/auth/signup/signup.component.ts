@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { GET_USERS , CREATE_USER } from '../../graphql.operations';
+import { Router } from '@angular/router';
 // import { ExecutionResult } from 'graphql';
 // import { ApolloError } from '@apollo/client';
 
@@ -34,7 +35,7 @@ export class SignupComponent implements OnInit {
   bioError: string | null = null;
   passwordError: string | null = null;
 
-  constructor(private apollo: Apollo) { }
+  constructor(private apollo: Apollo, private router: Router) { }
 
     onSubmit() {
       this.apollo.mutate({
@@ -51,9 +52,9 @@ export class SignupComponent implements OnInit {
           password: this.password
         }
       }).subscribe(
-        ({ data }) => {
-          console.log('User created:', data);
-          // Traiter la réponse la mutation ici
+        (response) => {
+          this.router.navigate(['/home']);
+          // this.resetForm();
         },
         error => {
           console.log('Error creating user:', error);
@@ -62,13 +63,25 @@ export class SignupComponent implements OnInit {
     }
 
     ngOnInit(): void {
-    this.apollo.watchQuery({
-      query: GET_USERS
-    }).valueChanges.subscribe(({ data, error }: any) => {
-      if (data && data.users && data.users.edges) {
-        this.users = data.users.edges.map((edge: any) => edge.node);
-      }
-      this.error = error;
-    });
-  }
+      this.apollo.watchQuery({
+        query: GET_USERS
+      }).valueChanges.subscribe(({ data, error }: any) => {
+        if (data && data.users && data.users.edges) {
+          this.users = data.users.edges.map((edge: any) => edge.node);
+        }
+        this.error = error;
+      });
+    }
+
+    // resetForm(){
+    //       this.username = '';
+    //       this.email = '';
+    //       this.gender = '';
+    //       this.location = '';
+    //       this.website = '';
+    //       this.bio = '';
+    //       this.interest = '';
+    //       this.phoneNumber = '';
+    //       this.password= '';
+    // }
 }

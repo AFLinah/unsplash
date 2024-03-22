@@ -31,7 +31,7 @@ export const CREATE_USER = gql`
   mutation CreateUser (
     $username: String!,
     $email: String!,
-    $gender: String!,
+    $gender: GenderType!,
     $location: String!,
     $website: String!,
     $bio: String!,
@@ -52,7 +52,6 @@ export const CREATE_USER = gql`
           password: $password
         }
       ) {
-        user {
           username
           email
           gender
@@ -62,6 +61,16 @@ export const CREATE_USER = gql`
           interests
           phoneNumber
         }
-      }
     }
   `;
+
+  export const USER_LOGIN = gql `
+    mutation USER_LOGIN {
+      tokenAuth(password: "password", username: "infinix") {
+        success
+        token {
+          token
+        }
+      }
+    }
+  `
