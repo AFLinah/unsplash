@@ -8,7 +8,9 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
   menuValue: boolean = false;
-  menu_icon: string = 'bi bi-list'
+  menu_icon: string = 'bi bi-list';
+
+  isLoggedIn: boolean = false;
 
   openMenu(){
     this.menuValue = !this.menuValue;
@@ -25,5 +27,20 @@ export class HeaderComponent {
   onSignUp(){
     // console.log('Redirection vers la page de création de compte');
     this.router.navigate(['/signup']); 
+  }
+
+  deleteToken(){
+    localStorage.removeItem("accessToken")
+    window.location.reload();
+  }
+
+  ngOnInit(): void {
+    // Vérifier si le token est présent dans le stockage local
+    const access_token = localStorage.getItem('accessToken');
+    if (access_token) {
+      this.isLoggedIn = true
+    }
+    
+    // console.log(localStorage.getItem('accessToken'));
   }
 }

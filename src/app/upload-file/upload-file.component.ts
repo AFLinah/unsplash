@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -9,20 +9,36 @@ import { HttpClient } from '@angular/common/http';
 export class UploadFileComponent {
 
   gqlUrl: string = 'http://localhost:8000/api/v1/graphql';
+  image_file: any;
+  fileUploaded: boolean = false;
+  fileUrl: string = '';
 
-  constructor(private http: HttpClient) {}
+  @ViewChild('previewImage') previewImage!: ElementRef;
+  constructor(private http: HttpClient) {
+  }
 
-  upload(event: any): void {
+  onChange(event: any): void {
+    this.image_file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.previewImage.nativeElement.src = reader.result as string;
+    };
+    reader.readAsDataURL(this.image_file);
+    this.fileUploaded = true;
+  }
 
+  cancelSubmit(){
+    this.fileUploaded = false;
+  }
+
+  handleSubmit(): void {
     const allowedContentTypes = ['image/jpg', 'image/png', 'image/jpeg'];
-
-    const file = event.target.files[0];
     // console.log(`file type ${file.type}`);
-    const contentType = file.type.toLowerCase();
+    const contentType = this.image_file.type.toLowerCase();
 
 
     if(allowedContentTypes.includes(contentType)){
-      console.log('Fichier autoriser: ', file);
+      console.log('Fichier autoriser: ', this.image_file);
       const operations = {
         query: `
           mutation($file: Upload!) {
@@ -46,7 +62,7 @@ export class UploadFileComponent {
       const formData = new FormData();
       formData.append('operations', JSON.stringify(operations));
       formData.append('map', JSON.stringify(map));
-      formData.append('file', file, file.name);
+      formData.append('file', this.image_file, this.image_file.name);
       
       // console.log('Fichier: ', file);
       this.http.post(this.gqlUrl, formData).subscribe({
@@ -60,9 +76,5 @@ export class UploadFileComponent {
     } else {
       console.error('Extension de fichier non autoriser');
     }
-
-    
-
   }
-
 }

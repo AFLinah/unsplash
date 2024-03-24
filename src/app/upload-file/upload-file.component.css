@@ -1,4 +1,38 @@
-/* input[type="file"] {
-    position: absolute;
-    left: -9999px;
-} */
+.drag-and-drop{
+    width: 500px;
+    height: 300px;
+}
+
+.btn-upload {
+    background-color: lightblue;
+}
+.btn-cancel {
+    background-color: rgb(238, 83, 83);
+}
+
+button{
+    color: white;
+    border: none;
+    width: 150px;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+img{
+    width: 300px;
+}
+
+.img-btn {
+    border-color: rgb(221, 209, 209);
+    border-style: dashed;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.img-btn:hover{
+    cursor: pointer;
+}
+
+.wrapper {
+    width: 700px;
+}

@@ -30,8 +30,21 @@
                     <a class="gradient-pink-blue" href="#">Unsplash+</a>
                 </li> -->
                 <!-- <li class="vertical"></li> -->
-                <a routerLink="login" class="btn  border-0 text-grey text-hover" >Log in</a>
-                <a routerLink="uploadFile" class="btn  border text-grey text-hover">Submit a photo</a>
+                <ng-container *ngIf="!isLoggedIn">
+                    <a routerLink="login" class="btn  border-0 text-grey text-hover" >Log in</a>
+                </ng-container>
+                <a routerLink="fileUpload" class="btn  border text-grey text-hover">Submit a photo</a>
+                <ng-container *ngIf="isLoggedIn">
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="assets/images/photo1.avif" width="30" height="30" alt="" class="rounded-circle"/>
+                        </a>
+                      
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" routerLink="home" (click)="deleteToken()">Log out</a></li>
+                        </ul>
+                    </div>
+                </ng-container>
             </ul>
         </div>
     </div>
