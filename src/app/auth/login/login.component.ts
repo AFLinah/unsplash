@@ -36,6 +36,7 @@ export class LoginComponent {
 
         //Redirect to homepage
         this.router.navigate(['/home']);
+        window.location.reload();
       },
       error => {
         console.log('Error logging user:', error);
@@ -43,8 +44,12 @@ export class LoginComponent {
     );
   }
 
-  // resetForm() {
-  //   this.username = '';
-  //   this.password = '';
-  // }
+  ngOnInit(): void {
+    // Vérifier si le token est présent dans le stockage local
+    const access_token = localStorage.getItem('accessToken');
+
+    if (access_token) {
+      this.router.navigate(['/home']);
+    }
+}
 }
