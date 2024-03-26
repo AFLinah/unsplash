@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './home/home.component';
+import { ImageComponent } from './image/image.component';
 
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -26,6 +27,7 @@ import { HomeComponent } from './home/home.component';
     UploadFileComponent,
     LoginComponent,
     HomeComponent,
+    ImageComponent,
   ],
   imports: [
     BrowserModule,

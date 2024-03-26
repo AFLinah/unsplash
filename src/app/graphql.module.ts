@@ -3,7 +3,11 @@ import { HttpLink } from 'apollo-angular/http';
 import { NgModule } from '@angular/core';
 import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
 
-const uri = 'http://localhost:8000/api/v1/graphql'; // <-- add the URL of the GraphQL server here
+import { CheckpointService } from './services/checkpoint.service';
+
+const service = new CheckpointService()
+const uri = service.uri
+
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   return {
     link: httpLink.create({ uri }),

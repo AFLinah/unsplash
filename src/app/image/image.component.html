@@ -1,0 +1,6 @@
+
+<div class="container">
+    <div class="photo" *ngFor="let imageUrl of images">
+        <img [src]="api_url + imageUrl.node.baseUrl" alt="Image">
+    </div>
+</div>

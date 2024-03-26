@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { CheckpointService } from '../services/checkpoint.service';
 
 @Component({
   selector: 'app-upload-file',
@@ -8,14 +9,15 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 })
 export class UploadFileComponent {
 
-  gqlUrl: string = 'http://localhost:8000/api/v1/graphql';
+  gqlUrl: string = "";
   image_file: any;
   fileUploaded: boolean = false;
   fileUrl: string = '';
   showError: string = '';
 
   @ViewChild('previewImage') previewImage!: ElementRef;
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private checkpointService: CheckpointService) {
+    this.gqlUrl = checkpointService.uri;
   }
 
   onChange(event: any): void {
