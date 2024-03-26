@@ -1,16 +1,24 @@
 .drag-and-drop{
     width: 500px;
-    height: 300px;
+    height: auto;
+    position: relative;
 }
 
-.btn-upload {
-    background-color: lightblue;
-}
-.btn-cancel {
-    background-color: rgb(238, 83, 83);
+.image-uploaded {
+    max-width: 80%;
+    max-height: 100%;
+    display: block;
+    margin: auto;
 }
 
-button{
+.img-btn {
+    border: 3px dashed #ccc;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+button {
     color: white;
     border: none;
     width: 150px;
@@ -18,21 +26,17 @@ button{
     margin-bottom: 20px;
 }
 
-img{
-    width: 300px;
+.btn-upload {
+    background-color: #74C2E1;
 }
 
-.img-btn {
-    border-color: rgb(221, 209, 209);
-    border-style: dashed;
-    border-radius: 20px;
-    margin-bottom: 10px;
+.btn-upload:hover, .btn-upload:focus {
+    background-color: #00BFFF;
 }
 
-.img-btn:hover{
-    cursor: pointer;
+.btn-cancel {
+    background-color: #EE5346;
 }
-
-.wrapper {
-    width: 700px;
+.btn-cancel:hover, .btn-cancel:focus {
+    background-color: #FF0000;
 }

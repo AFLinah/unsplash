@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-upload-file',
@@ -12,6 +12,7 @@ export class UploadFileComponent {
   image_file: any;
   fileUploaded: boolean = false;
   fileUrl: string = '';
+  showError: string = '';
 
   @ViewChild('previewImage') previewImage!: ElementRef;
   constructor(private http: HttpClient) {
@@ -29,24 +30,20 @@ export class UploadFileComponent {
 
   cancelSubmit(){
     this.fileUploaded = false;
+    this.showError = "";
   }
 
-  handleSubmit(): void {
+  async handleSubmit(): Promise<void> {
     const allowedContentTypes = ['image/jpg', 'image/png', 'image/jpeg'];
-    // console.log(`file type ${file.type}`);
     const contentType = this.image_file.type.toLowerCase();
-
-
+    const accessToken = localStorage.getItem('accessToken');
+  
     if(allowedContentTypes.includes(contentType)){
-      console.log('Fichier autoriser: ', this.image_file);
+      // console.log('Fichier autoriser: ', this.image_file);
       const operations = {
         query: `
           mutation($file: Upload!) {
-            uploadFile(file: $file){
-              fileName
-              baseUrl
-              blurhashCode
-            }
+            uploadFile(file: $file)
           }
         `,
         variables: {
@@ -58,23 +55,30 @@ export class UploadFileComponent {
         file: ["variables.file"]
       };
   
-      // const file = event.target.files[0];
       const formData = new FormData();
       formData.append('operations', JSON.stringify(operations));
       formData.append('map', JSON.stringify(map));
       formData.append('file', this.image_file, this.image_file.name);
-      
-      // console.log('Fichier: ', file);
-      this.http.post(this.gqlUrl, formData).subscribe({
-        next: (response) => {
-          // Handle success response
-        },
-        error: (error) => {
-          // Handle error
-        }
-      });
+  
+      // Adding authorization header with token
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Authorization' : `JWT ${accessToken}`
+        })
+      };
+  
+      try {
+        const response = await this.http.post(this.gqlUrl, formData, httpOptions).toPromise();
+        // Handle success response
+        // console.log(response);
+        this.fileUploaded = false;
+      } catch (error) {
+        // Handle error
+        console.error('An error occurred: ', error);
+      }
     } else {
-      console.error('Extension de fichier non autoriser');
+      // console.error('Extension de fichier non autoriser');
+      this.showError = "Extension de fichier non autoriser";
     }
   }
 }

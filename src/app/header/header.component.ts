@@ -34,6 +34,15 @@ export class HeaderComponent {
     window.location.reload();
   }
 
+  // submitPhoto(){
+  //   const access_token = localStorage.getItem("accessToken");
+  //   if(access_token) {
+  //     this.router.navigate(['/fileUpload']);
+  //   } else {
+  //     this.router.navigate(['/login']);
+  //   }
+  // }
+
   ngOnInit(): void {
     // Vérifier si le token est présent dans le stockage local
     const access_token = localStorage.getItem('accessToken');

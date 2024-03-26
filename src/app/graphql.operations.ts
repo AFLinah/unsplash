@@ -64,13 +64,27 @@ export const CREATE_USER = gql`
     }
   `;
 
-  export const USER_LOGIN = gql `
-    mutation USER_LOGIN {
-      tokenAuth(password: "password", username: "infinix") {
+export const USER_LOGIN = gql`
+    mutation Auth(
+      $username: String!,
+      $password: String!
+    ) {
+      tokenAuth(password: $password, username: $username){
         success
-        token {
+        token{
           token
         }
       }
     }
-  `
+`
+
+  // export const USER_LOGIN = gql `
+  //   mutation USER_LOGIN {
+  //     tokenAuth(password: $password, username: $username) {
+  //       success
+  //       token {
+  //         token
+  //       }
+  //     }
+  //   }
+  // `;

@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { ApolloQueryResult } from '@apollo/client/core';
 
 import { Apollo } from 'apollo-angular';
 import { USER_LOGIN } from '../../graphql.operations';
-import { map } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,30 +16,24 @@ export class LoginComponent {
   auth_token: string = '';
 
   constructor(private apollo: Apollo, private router: Router) { }
-  onSubmit() {
-    this.apollo.mutate({
+
+  async onSubmit() {
+    const response =  await this.apollo.mutate({
       mutation: USER_LOGIN,
       variables: {
         username: this.username,
         password: this.password,
       }
-    }).subscribe(
-      (response: any) => {
-        //Access token
-        this.auth_token = response.data.tokenAuth.token.token;
-        console.log(`Authentication token ${this.auth_token}`);
-
-        //Save token to local storage
+    }).subscribe({
+      next: (v: any) => {
+        this.auth_token = v.data.tokenAuth.token.token;
         localStorage.setItem('accessToken', this.auth_token);
-
-        //Redirect to homepage
         this.router.navigate(['/home']);
         window.location.reload();
       },
-      error => {
-        console.log('Error logging user:', error);
-      }
-    );
+      error: (err: Error) => console.log(err),
+      complete: () => console.info('complete')
+    })
   }
 
   ngOnInit(): void {
@@ -51,5 +43,5 @@ export class LoginComponent {
     if (access_token) {
       this.router.navigate(['/home']);
     }
-}
+  }
 }
